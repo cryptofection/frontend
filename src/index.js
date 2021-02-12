@@ -1,17 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { StrictMode } from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import theme from 'theme';
+import App from 'app';
+import store from './store';
+import { QueryClientProvider } from 'react-query';
+import queryClient from 'queryClient';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+// TODO add service-workers?
+
+render(
+  <StrictMode>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider theme={theme}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <App />
+        </ChakraProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </Provider>
+  </StrictMode>,
+  document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
