@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  coin: '',
+  coinID: '1',
 };
 
 const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    setCoin: (state, action) => {
-      state.coin = action.payload;
+    setCoinID: (state, action) => {
+      state.coinID = action.payload;
     },
   },
 });
 
-export const { setCoin } = globalSlice.actions;
+export const { setCoinID } = globalSlice.actions;
 
-export const selectCoin = (state) => state.global.coin;
+export const selectCoinID = (state) => state.global.coinID;
 
 export default globalSlice.reducer;
