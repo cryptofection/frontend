@@ -3,13 +3,11 @@ import { alpha, lighten } from 'utils';
 const colors = {
   modes: {
     light: {
-      background: '#CCC',
+      background: '#e2daf1',
+      primary: '#ffffff',
+      secondary: '#f4f1fa',
 
-      primary: '#E8E8E8',
-      primaryShade: '#E0E0E0',
 
-      secondary: '#F2F2F2',
-      secondaryShade: '#E8E8E8',
 
       action: '#3F51B5',
 
@@ -21,15 +19,14 @@ const colors = {
       skeletonEnd: alpha('black', 0.05),
     },
     dark: {
-      background: '#000',
+      background: '#1d1d42',
+      primary: '#141432',
+      secondary: '#1b1a43',
 
-      primary: '#1C1C21',
-      primaryShade: '#212126',
 
-      secondary: '#26262C',
-      secondaryShade: '#34343C',
+      
 
-      action: '#F5B250',
+      action: '#4e2ecf',
 
       success: lighten('#4caf50', 0.2),
       warning: lighten('#ffc107', 0.2),
