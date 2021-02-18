@@ -8,7 +8,7 @@ const styles = {
     body: {
       backgroundColor: color('background')(props),
       fontSize: '1.6rem',
-      p: '20px',
+      p: ['10px', '20px'],
       w: '100vw',
       h: '100vh',
       minH: '568px',
