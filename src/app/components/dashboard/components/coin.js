@@ -34,7 +34,7 @@ const Coin = ({ onOpen }) => {
             direction={{ base: 'row', lg: 'column' }}
             justify='space-between'
           >
-            <Flex fontWeight='bold'>
+            <Flex fontWeight='bold' pb={['0px', '8px']}>
               <Image src={coin.logo} w='16px' h='16px' mt='7px' mr='8px' />
               <Flex direction='column'>
                 <Text
@@ -77,7 +77,7 @@ const Coin = ({ onOpen }) => {
                   fontWeight='bold'
                   justify='center'
                   fontSize={['0.8rem', '1.4rem']}
-                  mb={{ base: '0px', lg: '14px' }}
+                  mb={{ base: '0px', lg: '6px' }}
                   color={pickAlpha(0.6, 0.4)}
                 >
                   {coin.name.split(' ')[0]} Price ({coin.symbol})
