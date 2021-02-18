@@ -28,7 +28,7 @@ const RateRow = ({ id }) => {
         onClick={() => onOpen()}
         h='50px'
         align='center'
-        fontSize={['0.8rem', '1.2rem']}
+        fontSize={['0.9rem', '1.4rem']}
         fontWeight='bold'
         color={pickAlpha(0.6, 0.8)}
       >

@@ -47,10 +47,10 @@ const Rate = () => {
           >
             <Thead>
               <Tr>
-                {!isMobile && <Th>Rank</Th>}
-                <Th>Currency</Th>
-                <Th>Price</Th>
-                <Th>24h +/-</Th>
+                {!isMobile && <Th fontSize={['0.8rem', '1.2rem']}>Rank</Th>}
+                <Th fontSize={['0.8rem', '1.2rem']}>Currency</Th>
+                <Th fontSize={['0.8rem', '1.2rem']}>Price</Th>
+                <Th fontSize={['0.8rem', '1.2rem']}>24h +/-</Th>
               </Tr>
             </Thead>
             <Tbody>
