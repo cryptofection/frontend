@@ -19,12 +19,24 @@ const App = () => {
       <ColorMode />
       <Flex
         position='absolute'
-        top='40px'
-        left='40px'
+        top={['20px', '40px']}
+        left={['20px', '40px']}
         color={pickAlpha(0.5, 0.7)}
+        userSelect='none'
+        cursor='pointer'
+        sx={{
+          svg: {
+            w: ['30px', '60px'],
+            h: ['21px', '42px'],
+          },
+        }}
       >
         <BrandIcon fill={pickAlpha(0.5, 0.7)} />
-        <Text fontWeight='bold' fontSize='36px' ml='10px'>
+        <Text
+          fontWeight='bold'
+          fontSize={['18px', '36px']}
+          ml={['6px', '10px']}
+        >
           Cryptofection
         </Text>
       </Flex>

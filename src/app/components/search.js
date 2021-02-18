@@ -3,7 +3,7 @@ import FuzzySearch from 'fuzzy-search'; // Or: var FuzzySearch = require('fuzzy-
 import { useEffect, useState } from 'react';
 import { ReactComponent as SearchIcon } from 'assets/search-icon.svg';
 import { useCoins, useColor } from 'hooks';
-import { darken, lighten } from 'utils';
+import { alpha, lighten } from 'utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import SearchCoin from './searchCoin';
 
@@ -46,11 +46,11 @@ const Search = () => {
     <Flex
       align='center'
       position='relative'
-      top='140px'
-      px='40px'
+      top={['100px', '140px']}
+      px={['20px', '40px']}
       direction='column'
     >
-      <Box position='relative' h='80px' w='100%' maxW='700px'>
+      <Box position='relative' h={['60px', '80px']} w='100%' maxW='700px'>
         <chakra.input
           type='text'
           value={search}
@@ -58,7 +58,7 @@ const Search = () => {
           h='100%'
           w='100%'
           borderRadius='100px'
-          fontSize='30px'
+          fontSize={['24px', '30px']}
           placeholder='Search Coin...'
           color={pickAlpha(0.5, 0.8)}
           bgColor={color('secondary')}
@@ -66,14 +66,14 @@ const Search = () => {
             color: pickAlpha(0.5, 0.5),
           }}
           _focus={{ outline: 0 }}
-          px='40px'
+          px={['20px', '40px']}
         />
         <SearchIconChakra
           position='absolute'
           top='50%'
-          right='40px'
-          h='34px'
-          w='34px'
+          right={['20px', '40px']}
+          h={['24px', '34px']}
+          w={['24px', '34px']}
           transform='translateY(-50%)'
           fill={pickAlpha(0.5, 0.5)}
         />
@@ -81,14 +81,12 @@ const Search = () => {
       <AnimatePresence>
         {result.length !== 0 && isOpen && (
           <MotionBox
-            bgColor={pick(
-              darken(color('secondary'), 0.2),
-              lighten(color('secondary'), 0.5),
-            )}
-            padding='20px'
-            pb='0'
+            boxShadow={`0 0 30px ${alpha('black', 0.1)}`}
+            bgColor={pick(color('secondary'), lighten(color('secondary'), 0.2))}
+            p={['10px', '20px']}
+            pb='0px !important'
             position='absolute'
-            top='80px'
+            top={['70px', '80px']}
             borderRadius='30px'
             initial={{
               opacity: 0,
@@ -102,6 +100,8 @@ const Search = () => {
               opacity: 0,
               y: 50,
             }}
+            w={['60%']}
+            maxW='520px'
           >
             {result.slice(0, 4).map((coin) => (
               <SearchCoin
