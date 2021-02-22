@@ -4,7 +4,7 @@ import { Rate, Coin } from './components';
 import { useSelector } from 'react-redux';
 import { selectCoinID } from 'slices/global';
 import { CoinInfo } from 'features';
-import { TopTweets } from './components';
+import { TopTweets, Visualization, SentimentAnalysis } from './components';
 
 const Dashboard = () => {
   const { color } = useColor();
@@ -45,6 +45,8 @@ const Dashboard = () => {
           borderRadius='30px'
           bgColor={color('secondary')}
           colSpan={{ base: 1, lg: 4, xl: 3 }}
+          overflow='auto'
+          minH='280px'
         >
           <TopTweets />
         </GridItem>
@@ -53,14 +55,14 @@ const Dashboard = () => {
           bgColor={color('secondary')}
           colSpan={{ base: 1, lg: 3, xl: 5 }}
         >
-          visualisation
+          <Visualization />
         </GridItem>
         <GridItem
           borderRadius='30px'
           bgColor={color('secondary')}
           colSpan={{ base: 1, lg: 1, xl: 3 }}
         >
-          sentiment analysis
+          <SentimentAnalysis />
         </GridItem>
       </Grid>
       <CoinInfo id={coinID} isOpen={isOpen} onClose={onClose} />
