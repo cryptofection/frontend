@@ -14,8 +14,13 @@ const globalSlice = createSlice({
   },
 });
 
-export const { setCoinID } = globalSlice.actions;
+export const {
+  setCoinID,
+  incrementLoadCount,
+  resetLoadCount,
+} = globalSlice.actions;
 
 export const selectCoinID = (state) => state.global.coinID;
+export const selectLoadCount = (state) => state.global.loadCount;
 
 export default globalSlice.reducer;

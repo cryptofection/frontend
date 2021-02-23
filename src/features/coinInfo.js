@@ -179,6 +179,7 @@ const CoinInfo = ({ id, isOpen, onClose }) => {
           <Flex fontWeight='bold' fontSize='10px' flexFlow='wrap'>
             {coin['tag-names'].map((name) => (
               <Box
+                key={name}
                 mr='10px'
                 mb='10px'
                 bgColor={pickAlpha(0.1, 0.3)}

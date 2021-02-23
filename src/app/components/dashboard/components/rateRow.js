@@ -5,19 +5,26 @@ import {
   Tr,
   Td,
   useBreakpointValue,
+  Skeleton,
 } from '@chakra-ui/react';
-import { useColor, useCoin, useQuote } from 'hooks';
+import { useColor, useCoin, useQuote, useCoins } from 'hooks';
 import { formatPrice, formatChange } from 'utils';
 import { CoinInfo } from 'features';
 
-const RateRow = ({ id }) => {
-  const { pickAlpha } = useColor();
+const RateRow = ({ index }) => {
+  const { color, pickAlpha } = useColor();
+
+  const { coins } = useCoins();
+  const id = coins && coins[index].id;
   const { quote } = useQuote(id);
   const { coin } = useCoin(id);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue([true, false]);
 
-  return coin && quote ? (
+  const isLoaded = coins && quote && coin;
+
+  return isLoaded ? (
     <>
       <Tr
         cursor='pointer'
@@ -74,7 +81,89 @@ const RateRow = ({ id }) => {
       </Tr>
       <CoinInfo id={id} isOpen={isOpen} onClose={onClose} />
     </>
-  ) : null;
+  ) : (
+    <Tr
+      cursor='pointer'
+      h='50px'
+      align='center'
+      fontSize={['0.9rem', '1.4rem']}
+      fontWeight='bold'
+      color={pickAlpha(0.6, 0.8)}
+    >
+      {!isMobile && (
+        <Td>
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={isLoaded}
+            fadeDuration={0}
+          >
+            <chakra.span color={pickAlpha(0.6, 0.8)} mr='8px'>
+              0
+            </chakra.span>
+          </Skeleton>
+        </Td>
+      )}
+      <Td>
+        <Skeleton
+          pos='relative'
+          borderRadius={8}
+          mx='auto'
+          userSelect='none'
+          startColor={color('skeletonStart')}
+          endColor={color('skeletonEnd')}
+          isLoaded={isLoaded}
+          fadeDuration={0}
+        >
+          <Flex align='center' fontWeight='bold'>
+            <chakra.img
+              src=''
+              w='14px'
+              h='14px'
+              borderRadius='100%'
+              mr='10px'
+            />
+            <chakra.span color={pickAlpha(0.6, 0.8)} mr='8px'>
+              loading
+            </chakra.span>
+            <chakra.span color={pickAlpha(0.3, 0.4)}>XXX</chakra.span>
+          </Flex>
+        </Skeleton>
+      </Td>
+      <Td color={pickAlpha(0.6, 0.7)} fontWeight='500'>
+        <Skeleton
+          pos='relative'
+          borderRadius={8}
+          mx='auto'
+          userSelect='none'
+          startColor={color('skeletonStart')}
+          endColor={color('skeletonEnd')}
+          isLoaded={isLoaded}
+          fadeDuration={0}
+        >
+          loading
+        </Skeleton>
+      </Td>
+      <Td fontWeight='bold'>
+        <Skeleton
+          pos='relative'
+          borderRadius={8}
+          mx='auto'
+          userSelect='none'
+          startColor={color('skeletonStart')}
+          endColor={color('skeletonEnd')}
+          isLoaded={isLoaded}
+          fadeDuration={0}
+        >
+          0.00
+        </Skeleton>
+      </Td>
+    </Tr>
+  );
 };
 
 export default RateRow;

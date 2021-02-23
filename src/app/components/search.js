@@ -105,6 +105,7 @@ const Search = () => {
           >
             {result.slice(0, 4).map((coin) => (
               <SearchCoin
+                key={coin.id}
                 coin={coin}
                 onClick={() => {
                   setSearch('');

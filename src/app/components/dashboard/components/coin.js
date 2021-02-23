@@ -1,4 +1,4 @@
-import { chakra, Heading, Flex, Image, Text } from '@chakra-ui/react';
+import { chakra, Heading, Flex, Image, Text, Skeleton } from '@chakra-ui/react';
 import { useColor, useCoin, useQuote } from 'hooks';
 import { useSelector } from 'react-redux';
 import { selectCoinID } from 'slices/global';
@@ -8,7 +8,7 @@ import { BiDetail } from 'react-icons/bi';
 const BiDetailChakra = chakra(BiDetail);
 
 const Coin = ({ onOpen }) => {
-  const { pickAlpha } = useColor();
+  const { color, pickAlpha } = useColor();
   const coinID = useSelector(selectCoinID);
   const { coin } = useCoin(coinID);
   const { quote } = useQuote(coinID);
@@ -28,7 +28,7 @@ const Coin = ({ onOpen }) => {
       >
         Coin Info
       </Heading>
-      {coin && quote && (
+      {coin && quote ? (
         <>
           <Flex
             direction={{ base: 'row', lg: 'column' }}
@@ -150,6 +150,85 @@ const Coin = ({ onOpen }) => {
             </Flex>
           </Flex>
         </>
+      ) : (
+        <Flex
+          height='100%'
+          direction={{ base: 'row', lg: 'column' }}
+          justify='space-between'
+        >
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={coin && quote}
+            fadeDuration={0}
+            w='100%'
+            height='20px'
+          />
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={coin && quote}
+            fadeDuration={0}
+            w='100%'
+            height='20px'
+          />
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={coin && quote}
+            fadeDuration={0}
+            w='100%'
+            height='20px'
+          />
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={coin && quote}
+            fadeDuration={0}
+            w='100%'
+            height='20px'
+          />
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={coin && quote}
+            fadeDuration={0}
+            w='100%'
+            height='20px'
+          />
+          <Skeleton
+            pos='relative'
+            borderRadius={8}
+            mx='auto'
+            userSelect='none'
+            startColor={color('skeletonStart')}
+            endColor={color('skeletonEnd')}
+            isLoaded={coin && quote}
+            fadeDuration={0}
+            w='100%'
+            height='20px'
+          />
+        </Flex>
       )}
     </Flex>
   );

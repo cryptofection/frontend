@@ -8,12 +8,10 @@ import {
   Th,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { useCoins } from 'hooks';
 import RateRow from './rateRow';
 import { useColor } from 'hooks';
 
 const Rate = () => {
-  const { coins } = useCoins();
   const { pickAlpha } = useColor();
   const isMobile = useBreakpointValue([true, false]);
 
@@ -33,33 +31,31 @@ const Rate = () => {
         Top Coins
       </Heading>
       <Flex flex='1' mb='-17px'>
-        {coins && (
-          <Table
-            height='100%'
-            sx={{
-              'td, th': {
-                borderColor: pickAlpha(0.1, 0.1),
-              },
-              'tr:last-of-type td': {
-                borderColor: 'transparent',
-              },
-            }}
-          >
-            <Thead>
-              <Tr>
-                {!isMobile && <Th fontSize={['0.8rem', '1.2rem']}>Rank</Th>}
-                <Th fontSize={['0.8rem', '1.2rem']}>Currency</Th>
-                <Th fontSize={['0.8rem', '1.2rem']}>Price</Th>
-                <Th fontSize={['0.8rem', '1.2rem']}>24h +/-</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {coins.slice(0, 3).map((coin) => (
-                <RateRow id={coin.id} />
-              ))}
-            </Tbody>
-          </Table>
-        )}
+        <Table
+          height='100%'
+          sx={{
+            'td, th': {
+              borderColor: pickAlpha(0.1, 0.1),
+            },
+            'tr:last-of-type td': {
+              borderColor: 'transparent',
+            },
+          }}
+        >
+          <Thead>
+            <Tr>
+              {!isMobile && <Th fontSize={['0.8rem', '1.2rem']}>Rank</Th>}
+              <Th fontSize={['0.8rem', '1.2rem']}>Currency</Th>
+              <Th fontSize={['0.8rem', '1.2rem']}>Price</Th>
+              <Th fontSize={['0.8rem', '1.2rem']}>24h +/-</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {Array.from({ length: 3 }, (_, index) => (
+              <RateRow key={index} index={index} />
+            ))}
+          </Tbody>
+        </Table>
       </Flex>
     </Flex>
   );
