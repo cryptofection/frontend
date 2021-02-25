@@ -1,4 +1,4 @@
-import { alpha, color } from 'utils';
+import { color } from 'utils';
 
 const styles = {
   global: (props) => ({
@@ -18,17 +18,25 @@ const styles = {
       h: '100%',
     },
     '::-webkit-scrollbar': {
-      width: ['6px', '10px'],
-      height: ['6px', '10px'],
-    },
-    '::-webkit-scrollbar-track': {
-      boxShadow: `inset 0 0 6px ${alpha('black', props.colorMode ? 0.2 : 0.3)}`,
-      borderRadius: 8,
+      width: '28px',
+      height: '18px',
     },
     '::-webkit-scrollbar-thumb': {
       bgColor: props.colorMode === 'light' ? '#3f51b5' : '#F5B250',
-      outline: 'none',
-      borderRadius: 8,
+      height: '6px',
+      border: '10px solid rgba(0, 0, 0, 0)',
+      backgroundClip: 'padding-box',
+      '-webkit-border-radius': '200px',
+      '-webkit-box-shadow':
+        'inset -3px -3px 0px rgba(0, 0, 0, 0.05), inset 3px 3px 0px rgba(0, 0, 0, 0.05)',
+    },
+    '::-webkit-scrollbar-button': {
+      width: 0,
+      height: 0,
+      display: 'none',
+    },
+    '::-webkit-scrollbar-corner': {
+      backgroundColor: 'transparent',
     },
   }),
 };
