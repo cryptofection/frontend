@@ -7,17 +7,20 @@ import {
   Image,
   Grid,
   GridItem,
+  Skeleton,
 } from '@chakra-ui/react';
 import { Modal } from 'features';
-import { useColor } from 'hooks';
+import { useColor, useInfo } from 'hooks';
 import { Tweet } from 'react-twitter-widgets';
 import { useState, useEffect } from 'react';
 import useDimensions from 'react-use-dimensions';
+import TimeAgo from 'react-timeago';
 
 const TweetModal = ({ isOpen, onClose, id }) => {
   const { pickAlpha } = useColor();
   const [loaded, setLoaded] = useState(false);
 
+  console.log(id);
   useEffect(() => {
     setLoaded(false);
   }, [isOpen]);
@@ -46,6 +49,7 @@ const TweetModal = ({ isOpen, onClose, id }) => {
 const TweetRow = ({ name, username, src, createdAt, id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { pickAlpha } = useColor();
+  const [ref, { width }] = useDimensions();
 
   return (
     <>
@@ -58,27 +62,30 @@ const TweetRow = ({ name, username, src, createdAt, id }) => {
           }}
           onClick={onOpen}
         >
-          <Box
-            w='44px'
-            h='44px'
-            bgColor='yellow.500'
-            borderRadius='50%'
-            mr='10px'
-            overflow='hidden'
-          >
-            <Image src={src} w='100%' h='100%' />
-          </Box>
-          <Flex direction='column'>
+          <Flex mr='10px'>
+            <Box w='44px' h='44px' borderRadius='50%' overflow='hidden'>
+              <Image src={src} w='44px' h='44px' />
+            </Box>
+          </Flex>
+          <Flex direction='column' w='100%'>
             <Flex flex='1' fontSize='1.4rem'>
               <chakra.span fontWeight='bold' color={pickAlpha(0.8, 0.8)}>
                 {name}
               </chakra.span>
             </Flex>
-            <Flex fontSize='1.4rem'>
-              <chakra.span mr='10px' color={pickAlpha(0.6, 0.4)}>
-                {username}
+            <Flex ref={ref} w='100%'>
+              <chakra.span
+                mr='10px'
+                color={pickAlpha(0.6, 0.4)}
+                fontSize='1.2rem'
+              >
+                @{username}
               </chakra.span>
-              <chakra.span color={pickAlpha(0.6, 0.4)}>{createdAt}</chakra.span>
+              {width > 200 && (
+                <chakra.span color={pickAlpha(0.6, 0.4)} fontSize='1.2rem'>
+                  <TimeAgo date={createdAt} />
+                </chakra.span>
+              )}
             </Flex>
           </Flex>
         </Flex>
@@ -89,7 +96,8 @@ const TweetRow = ({ name, username, src, createdAt, id }) => {
 };
 
 const TopTweets = () => {
-  const { pickAlpha } = useColor();
+  const { info } = useInfo();
+  const { color, pickAlpha, pick } = useColor();
   const [ref, { width }] = useDimensions();
 
   return (
@@ -110,101 +118,65 @@ const TopTweets = () => {
         >
           Top Tweets
         </Heading>
-        <Grid
-          gap='20px'
-          templateColumns={width > 490 && width < 894 ? '1fr 1fr' : '1fr'}
-        >
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-          <GridItem>
-            <TweetRow
-              name='Elon Musk'
-              username='@elonmusk'
-              createdAt='22h'
-              src='https://pbs.twimg.com/profile_images/1363228426094538754/3ncXqbh-_400x400.jpg'
-              id='1363230177002622976'
-            />
-          </GridItem>
-        </Grid>
+
+        {info ? (
+          info.topTweets.length !== 0 ? (
+            <Grid
+              gap='20px'
+              templateColumns={width > 490 && width < 894 ? '1fr 1fr' : '1fr'}
+            >
+              {info.topTweets.map((tweet) => {
+                return (
+                  <GridItem>
+                    <TweetRow
+                      id={tweet.id}
+                      name={tweet.name}
+                      username={tweet.username}
+                      createdAt={tweet.created_at}
+                      src={tweet.avatar}
+                    />
+                  </GridItem>
+                );
+              })}
+            </Grid>
+          ) : (
+            <Flex justify='center' align='center' w='100%' h='100%'>
+              <chakra.span
+                color={pickAlpha(0.5, 0.5)}
+                bgColor={pick('#add1ff', '#333281')}
+                borderRadius='100px'
+                py='2px'
+                px='8px'
+                fontSize='1.4rem'
+                fontWeight='bold'
+              >
+                No tweets to show
+              </chakra.span>
+            </Flex>
+          )
+        ) : (
+          <Grid
+            gap='20px'
+            templateColumns={width > 490 && width < 894 ? '1fr 1fr' : '1fr'}
+          >
+            {Array.from({ length: 3 }, (_) => (
+              <GridItem>
+                <Skeleton
+                  pos='relative'
+                  borderRadius='15px'
+                  mx='auto'
+                  userSelect='none'
+                  startColor={color('skeletonStart')}
+                  endColor={color('skeletonEnd')}
+                  isLoaded={info}
+                  fadeDuration={0}
+                  w='100%'
+                  h='44px'
+                />
+              </GridItem>
+            ))}
+          </Grid>
+        )}
       </Flex>
     </>
   );

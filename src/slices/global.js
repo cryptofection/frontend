@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   coinID: '1',
+  searchQuery: 'Bitcoin',
 };
 
 const globalSlice = createSlice({
@@ -11,16 +12,15 @@ const globalSlice = createSlice({
     setCoinID: (state, action) => {
       state.coinID = action.payload;
     },
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
   },
 });
 
-export const {
-  setCoinID,
-  incrementLoadCount,
-  resetLoadCount,
-} = globalSlice.actions;
+export const { setCoinID, setSearchQuery } = globalSlice.actions;
 
 export const selectCoinID = (state) => state.global.coinID;
-export const selectLoadCount = (state) => state.global.loadCount;
+export const selectSearchQuery = (state) => state.global.searchQuery;
 
 export default globalSlice.reducer;

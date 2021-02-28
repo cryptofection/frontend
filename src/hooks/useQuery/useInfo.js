@@ -1,11 +1,15 @@
 import { useQuery } from 'react-query';
-import { GET } from 'utils/request';
+import { POST } from 'utils/request';
+import { selectSearchQuery } from 'slices/global';
+import { useSelector } from 'react-redux';
 
-const useInfo = (coin) => {
+const useInfo = () => {
+  const coin = useSelector(selectSearchQuery);
+
   return {
-    coins: useQuery(
+    info: useQuery(
       ['info', coin],
-      () => GET('/info', { coin }).then(({ data }) => data),
+      () => POST('/info', { coin }).then(({ data }) => data),
       {
         staleTime: Infinity,
         refetchOnMount: false,

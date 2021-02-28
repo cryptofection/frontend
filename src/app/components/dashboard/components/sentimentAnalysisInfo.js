@@ -1,10 +1,12 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import { Modal } from 'features';
-import { useColor } from 'hooks';
+import { useColor, useInfo } from 'hooks';
 import { Chart } from 'react-google-charts';
 import { lighten } from 'utils';
 
 const SentimentAnalysisInfo = ({ isOpen, onClose, description, src }) => {
+  const { info } = useInfo();
+
   const { pick, pickAlpha } = useColor();
 
   return (
@@ -21,30 +23,30 @@ const SentimentAnalysisInfo = ({ isOpen, onClose, description, src }) => {
             },
           }}
         >
-          <Chart
-            // width='280px'
-            // height='290px'
-            chartType='PieChart'
-            loader={<div>Loading Chart</div>}
-            data={[
-              ['Task', 'Hours per Day'],
-              ['Positive', 11],
-              ['Negative', 4],
-              ['Neutral', 4],
-            ]}
-            options={{
-              height: '300px',
-              is3D: true,
-              legend: { position: 'bottom' },
-              pieSliceText: 'label',
-              backgroundColor: 'transparent',
-              colors: [
-                pick('#4caf50', lighten('#4caf50', 0.15)),
-                pick('#f44336', lighten('#f44336', 0.15)),
-                pick('#9e9e9e', lighten('#9e9e9e', 0.15)),
-              ],
-            }}
-          />
+          {info && (
+            <Chart
+              chartType='PieChart'
+              loader={<div>Loading Chart</div>}
+              data={[
+                ['Sentiment', 'Count'],
+                ['Positive', info.score.positive],
+                ['Negative', info.score.negative],
+                ['Neutral', info.score.neutral],
+              ]}
+              options={{
+                height: '300px',
+                is3D: true,
+                legend: { position: 'bottom' },
+                pieSliceText: 'label',
+                backgroundColor: 'transparent',
+                colors: [
+                  pick('#4caf50', lighten('#4caf50', 0.15)),
+                  pick('#f44336', lighten('#f44336', 0.15)),
+                  pick('#9e9e9e', lighten('#9e9e9e', 0.15)),
+                ],
+              }}
+            />
+          )}
         </Flex>
       </Flex>
     </Modal>

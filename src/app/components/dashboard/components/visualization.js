@@ -1,68 +1,16 @@
-import {
-  Heading,
-  Flex,
-  Grid,
-  Text,
-  GridItem,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Heading, Flex, Grid, GridItem } from '@chakra-ui/react';
 import { useColor } from 'hooks';
-import { Modal } from 'features';
-import First from 'assets/graphs/1.png';
-import Second from 'assets/graphs/2.png';
-import Third from 'assets/graphs/3.png';
-import Forth from 'assets/graphs/4.png';
-
-const Graph = ({ isOpen, onClose, title, description, src }) => {
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} maxH='auto'>
-      <Flex direction='column' h='100%'>
-        <Heading>{title}</Heading>
-        <Text my='10px'>{description}</Text>
-        <Flex
-          bg={`url(${src})`}
-          bgRepeat='no-repeat'
-          bgPosition='center center'
-          bgSize='cover'
-          w='80vw'
-          h='80vw'
-          maxW='360px'
-          maxH='360px'
-          mx='auto'
-          borderRadius='30px'
-        />
-      </Flex>
-    </Modal>
-  );
-};
-
-const MiniGraph = ({ title, description, src }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  return (
-    <>
-      <Flex
-        bg={`url(${src})`}
-        bgRepeat='no-repeat'
-        bgPosition='center center'
-        bgSize='cover'
-        flex='1'
-        h='100%'
-        onClick={onOpen}
-      />
-      <Graph
-        isOpen={isOpen}
-        onClose={onClose}
-        title={title}
-        description={description}
-        src={src}
-      />
-    </>
-  );
-};
+import useDimensions from 'react-use-dimensions';
+import {
+  CoinSearchHistory,
+  MostUsedWords,
+  TopHashtags,
+  TradingDecisions,
+} from './graphs';
 
 const Visualization = () => {
   const { pickAlpha } = useColor();
+  const [ref, { width }] = useDimensions();
 
   return (
     <Flex
@@ -72,6 +20,7 @@ const Visualization = () => {
       h='100%'
       direction='column'
       overflow='auto'
+      ref={ref}
     >
       <Heading
         fontSize={['1.6rem', '1.8rem']}
@@ -83,43 +32,23 @@ const Visualization = () => {
       <Grid
         borderRadius='30px'
         overflow='hidden'
-        templateColumns='repeat(4, 1fr)'
+        templateColumns={`repeat(${width > 782 ? 4 : 1}, 1fr)`}
         flex='1'
         minH='200px'
         gap='1px'
         cursor='pointer'
       >
         <GridItem>
-          <MiniGraph
-            title='Graph Title #1'
-            description='Graph Description #1 Ex aliqua commodo enim cillum magna excepteur
-              ullamco nulla magna nostrud nostrud esse aute officia. Consequat'
-            src={First}
-          />
+          <MostUsedWords />
         </GridItem>
         <GridItem>
-          <MiniGraph
-            title='Graph Title #2'
-            description='Graph Description #1 Ex aliqua commodo enim cillum magna excepteur
-              ullamco nulla magna nostrud nostrud esse aute officia. Consequat'
-            src={Second}
-          />
+          <TopHashtags />
         </GridItem>
         <GridItem>
-          <MiniGraph
-            title='Graph Title #3'
-            description='Graph Description #1 Ex aliqua commodo enim cillum magna excepteur
-              ullamco nulla magna nostrud nostrud esse aute officia. Consequat'
-            src={Third}
-          />
+          <TradingDecisions />
         </GridItem>
         <GridItem>
-          <MiniGraph
-            title='Graph Title #4'
-            description='Graph Description #1 Ex aliqua commodo enim cillum magna excepteur
-              ullamco nulla magna nostrud nostrud esse aute officia. Consequat'
-            src={Forth}
-          />
+          <CoinSearchHistory />
         </GridItem>
       </Grid>
     </Flex>

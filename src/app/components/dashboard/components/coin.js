@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import { selectCoinID } from 'slices/global';
 import { formatPrice, formatChange, alpha } from 'utils';
 import { BiDetail } from 'react-icons/bi';
+import { motion } from 'framer-motion';
+
+const FlexMotion = motion.custom(Flex);
 
 const BiDetailChakra = chakra(BiDetail);
 
@@ -125,7 +128,7 @@ const Coin = ({ onOpen }) => {
                 flex={{ base: 'none', lg: '1' }}
                 ml={{ base: '10px', sm: '20px', lg: '0px' }}
               >
-                <Flex
+                <FlexMotion
                   cursor='pointer'
                   onClick={onOpen}
                   title='Coin Info'
@@ -138,6 +141,8 @@ const Coin = ({ onOpen }) => {
                   justify='center'
                   align='center'
                   borderRadius='100%'
+                  whileHover={{ opacity: 0.6 }}
+                  whileTap={{ scale: 0.8 }}
                 >
                   <BiDetailChakra
                     title='Coin Info'
@@ -145,7 +150,7 @@ const Coin = ({ onOpen }) => {
                     h={['14px', '20px']}
                     color={pickAlpha(0.5, 0.6)}
                   />
-                </Flex>
+                </FlexMotion>
               </Flex>
             </Flex>
           </Flex>

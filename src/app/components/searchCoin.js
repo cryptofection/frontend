@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react';
 import { useColor } from 'hooks';
 import { useDispatch } from 'react-redux';
-import { setCoinID } from 'slices/global';
+import { setCoinID, setSearchQuery } from 'slices/global';
 import { alpha } from 'utils';
 
 const SearchCoin = ({ coin, onClick }) => {
@@ -21,6 +21,7 @@ const SearchCoin = ({ coin, onClick }) => {
       onClick={() => {
         onClick();
         dispath(setCoinID(coin.id));
+        dispath(setSearchQuery(coin.name));
       }}
       justify='space-between'
     >
