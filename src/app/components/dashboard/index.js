@@ -12,7 +12,7 @@ const Dashboard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box mt={['100px', '140px']} flex='1' overflow='auto'>
+    <Box mt={['120px', '180px']} mb={['20px', '40px']} flex='1' overflow='auto'>
       <Grid
         w='100%'
         h='100%'
@@ -24,7 +24,7 @@ const Dashboard = () => {
         templateRows={['230px', '280px']}
         gap={['20px', '40px']}
         overflow='auto'
-        p={['20px', '40px']}
+        px={['20px', '40px']}
         minH='0'
       >
         <GridItem

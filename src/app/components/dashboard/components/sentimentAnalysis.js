@@ -1,58 +1,68 @@
-import { Heading, Flex, chakra } from '@chakra-ui/react';
+import { Flex, Heading, useDisclosure } from '@chakra-ui/react';
 import { useColor } from 'hooks';
-import GaugeChart from 'react-gauge-chart';
-
-const GaugeChartChakra = chakra(GaugeChart);
+import { Chart } from 'react-google-charts';
+import { lighten } from 'utils';
+import { AiOutlineFullscreen } from 'react-icons/ai';
+import SentimentAnalysisInfo from './sentimentAnalysisInfo';
 
 const SentimentAnalysis = () => {
   const { pick, pickAlpha } = useColor();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
       <Flex
         borderRadius='30px'
-        p={['20px', '30px']}
         w='100%'
         h='100%'
-        direction='column'
-        overflow='auto'
+        justify='center'
+        align='center'
+        position='relative'
       >
         <Heading
           fontSize={['1.6rem', '1.8rem']}
-          mb={['6px', '10px']}
           color={pickAlpha(0.6, 0.8)}
+          position='absolute'
+          top={['20px', '30px']}
+          left={['20px', '30px']}
         >
           Sentiment Analysis
         </Heading>
         <Flex
-          justify='center'
-          align='center'
-          flex='1'
-          fontWeight='bold'
-          borderRadius='30px'
-          bgColor={pickAlpha(0.05, 0.05)}
+          position='absolute'
+          bottom={['10px', '15px']}
+          right={['10px', '15px']}
+          onClick={() => onOpen()}
+          cursor='pointer'
+          zIndex={5}
         >
-          <GaugeChartChakra
-            sx={{
-              svg: {
-                w: '100%',
-                h: '100%',
-              },
-              text: {
-                fill: `${pick('#5b5d61', '#b8b8c4')} !important`,
-              },
-              '.needle > *': {
-                fill: pick('#878a8e', '#a9a8b8'),
-              },
-            }}
-            id='gauge-chart5'
-            nrOfLevels={5}
-            colors={['#5BE12C', '#F5CD19', '#EA4228']}
-            percent={0.37}
-            arcPadding={0.02}
-          />
+          <AiOutlineFullscreen size='24px' color={pickAlpha(0.5, 0.6)} />
         </Flex>
+        <Chart
+          width='280px'
+          height='290px'
+          chartType='PieChart'
+          loader={<div>Loading Chart</div>}
+          data={[
+            ['Task', 'Hours per Day'],
+            ['Positive', 11],
+            ['Negative', 4],
+            ['Neutral', 4],
+          ]}
+          options={{
+            is3D: true,
+            legend: 'none',
+            pieSliceText: 'label',
+            backgroundColor: 'transparent',
+            colors: [
+              pick('#4caf50', lighten('#4caf50', 0.15)),
+              pick('#f44336', lighten('#f44336', 0.15)),
+              pick('#9e9e9e', lighten('#9e9e9e', 0.15)),
+            ],
+          }}
+        />
       </Flex>
+      <SentimentAnalysisInfo isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

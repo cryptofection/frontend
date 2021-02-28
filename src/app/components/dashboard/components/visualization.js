@@ -12,7 +12,6 @@ import First from 'assets/graphs/1.png';
 import Second from 'assets/graphs/2.png';
 import Third from 'assets/graphs/3.png';
 import Forth from 'assets/graphs/4.png';
-import VisualizationInfo from './visualizationInfo';
 
 const Graph = ({ isOpen, onClose, title, description, src }) => {
   return (
@@ -64,7 +63,6 @@ const MiniGraph = ({ title, description, src }) => {
 
 const Visualization = () => {
   const { pickAlpha } = useColor();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Flex
@@ -90,7 +88,6 @@ const Visualization = () => {
         minH='200px'
         gap='1px'
         cursor='pointer'
-        // onClick={() => onOpen()} // FIXME
       >
         <GridItem>
           <MiniGraph
@@ -125,7 +122,6 @@ const Visualization = () => {
           />
         </GridItem>
       </Grid>
-      <VisualizationInfo isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 };
