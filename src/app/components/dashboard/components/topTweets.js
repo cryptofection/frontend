@@ -199,9 +199,14 @@ const TopTweets = () => {
         >
           Top Tweets
         </Heading>
-        <Flex pl={['20px', '30px']} overflow='auto'>
+        <Flex
+          pl={['20px', '30px']}
+          overflow='auto'
+          w='100%'
+          h='100%'
+        >
           {info ? (
-            info.topTweets.length !== 0 ? (
+            info.topTweets.length === 0 ? (
               <Grid
                 gap='20px'
                 templateColumns={width > 490 && width < 894 ? '1fr 1fr' : '1fr'}
@@ -222,7 +227,13 @@ const TopTweets = () => {
                 })}
               </Grid>
             ) : (
-              <Flex justify='center' align='center' w='100%' h='100%'>
+              <Flex
+                justify='center'
+                align='center'
+                w='100%'
+                h='100%'
+                ml={['-10px', '-15px']}
+              >
                 <chakra.span
                   color={pickAlpha(0.5, 0.5)}
                   bgColor={pick('#add1ff', '#333281')}

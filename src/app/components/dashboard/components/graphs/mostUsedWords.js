@@ -1,4 +1,4 @@
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, Text } from '@chakra-ui/react';
 import MostUsedWordsImage from 'assets/graphs/1.png';
 import MiniGraph from './miniGraph';
 import Graph from './graph';
@@ -10,10 +10,12 @@ const MostUsedWords = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { info } = useInfo();
 
+  const words = countWords(info?.wordcloud || '');
+
   return (
     <>
       <MiniGraph
-        name={'Most used words'}
+        name='Word Cloud'
         image={MostUsedWordsImage}
         onClick={onOpen}
       />
@@ -21,7 +23,16 @@ const MostUsedWords = () => {
         isOpen={isOpen}
         onClose={onClose}
         title='Word Cloud'
-        description='Préciser les différents mots que les utilisateurs utilisent souvent dans leurs tweets pour parler d’un coin en affichant ces mots dans un graphe word cloud.'
+        description={
+          <Text>
+            Préciser les différents mots que les utilisateurs utilisent souvent
+            dans leurs tweets pour parler d’un coin en affichant ces mots dans
+            un graphe word cloud. <br />
+            Ce graphe présente plusieurs mots dont le plus répété est{' '}
+            <b>{words[0].text}</b> et le moins répété est{' '}
+            <b>{words[words.length - 1].text}</b>.
+          </Text>
+        }
       >
         {info && (
           <ReactWordcloud
@@ -38,7 +49,7 @@ const MostUsedWords = () => {
               spiral: 'archimedean',
               transitionDuration: 1000,
             }}
-            words={countWords(info.wordcloud)}
+            words={words}
           />
         )}
       </Graph>

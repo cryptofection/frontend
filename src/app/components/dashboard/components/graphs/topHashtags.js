@@ -1,4 +1,4 @@
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, Text } from '@chakra-ui/react';
 import TopHashtagsImage from 'assets/graphs/0.png';
 import { Chart } from 'react-google-charts';
 import MiniGraph from './miniGraph';
@@ -12,7 +12,7 @@ const TopHashtags = () => {
   return (
     <>
       <MiniGraph
-        name='Top hashtags'
+        name='Top Hashtags'
         image={TopHashtagsImage}
         onClick={onOpen}
       />
@@ -20,7 +20,14 @@ const TopHashtags = () => {
         isOpen={isOpen}
         onClose={onClose}
         title='Top Hashtags'
-        description='Afficher les hashtags les plus utilisés dans le monde du crypto Currency dans un graphe a bar horizontal et en spécifiant pour chaque hashtag sa fréquence.'
+        description={
+          <Text>
+            Afficher les hashtags les plus utilisés dans le monde du crypto
+            Currency dans un graphe a bar horizontal et en spécifiant pour
+            chaque hashtag sa fréquence. <br />
+            Le hashtag le plus utilisé est <b>{info?.hashtags[0][0]}</b>.
+          </Text>
+        }
       >
         {info && (
           <Chart

@@ -43,8 +43,11 @@ const Coin = ({ onOpen }) => {
                 <Text
                   fontSize={['1.6rem', '2.4rem']}
                   color={pickAlpha(0.6, 0.8)}
+                  isTruncated
+                  w='180px'
+                  title={coin.name}
                 >
-                  {coin.name.split(' ')[0]}
+                  {coin.name}
                 </Text>
                 <Flex mt='2px'>
                   <Text

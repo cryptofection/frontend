@@ -1,4 +1,4 @@
-import { useDisclosure } from '@chakra-ui/react';
+import { useDisclosure, Text } from '@chakra-ui/react';
 import CoinSearchHistoryImage from 'assets/graphs/3.jpg';
 import { Chart } from 'react-google-charts';
 import MiniGraph from './miniGraph';
@@ -12,7 +12,7 @@ const CoinSearchHistory = () => {
   return (
     <>
       <MiniGraph
-        name='Coin search history'
+        name='Historique'
         image={CoinSearchHistoryImage}
         onClick={onOpen}
       />
@@ -20,7 +20,16 @@ const CoinSearchHistory = () => {
         isOpen={isOpen}
         onClose={onClose}
         title='Historique'
-        description='Afficher les 10 des coins les plus recherchées dans notre application et pour visualiser cela on a utilisé un graphe a bar vertical.'
+        description={
+          <Text>
+            Afficher les 10 coins les plus recherchées dans notre application et
+            pour visualiser cela on a utilisé un graphe a bar vertical. <br />
+            Parmi les 10 coins on retrouve les 3 coin avec le plus grand nombre
+            de recherche sont: <b>{info?.search_history[0][0]}</b>,{' '}
+            <b>{info?.search_history[1][0]}</b> et{' '}
+            <b>{info?.search_history[2][0]}</b>.
+          </Text>
+        }
       >
         {info && (
           <Chart

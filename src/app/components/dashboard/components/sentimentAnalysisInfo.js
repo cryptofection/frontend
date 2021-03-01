@@ -1,22 +1,49 @@
-import { Flex, Heading, Text } from '@chakra-ui/react';
+import { Flex, Heading, Text, chakra } from '@chakra-ui/react';
 import { Modal } from 'features';
 import { useColor, useInfo } from 'hooks';
 import { Chart } from 'react-google-charts';
 import { lighten } from 'utils';
+import { useSelector } from 'react-redux';
+import { selectSearchQuery } from 'slices/global';
 
-const SentimentAnalysisInfo = ({ isOpen, onClose, description, src }) => {
+const roundIt = (x) => Math.round(x * 100) / 100;
+
+const SentimentAnalysisInfo = ({ isOpen, onClose }) => {
   const { info } = useInfo();
+  const searchQuery = useSelector(selectSearchQuery);
 
   const { pick, pickAlpha } = useColor();
+
+  const total =
+    info?.score.positive + info?.score.negative + info?.score.neutral;
+  const positivePerc = roundIt(info?.score.positive / total);
+  const negativePerc = roundIt(info?.score.negative / total);
+  const neutralPerc = roundIt(info?.score.neutral / total);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxH='auto'>
       <Flex direction='column' h='100%'>
-        <Heading>Sentiment Analysis</Heading>
-        <Text my='10px'>
-          Visualisation des sentiments en pourcentage « positive, négative &
-          neutre » des utilisateurs à partir de leurs tweets et en affichant
-          cela dans un graphe circulaire animé.
+        <Heading color={pickAlpha(0.8, 0.8)}>Sentiment Analysis</Heading>
+        <Text my='10px' color={pickAlpha(0.7, 0.7)}>
+          Visualisation des sentiments en pourcentage{' '}
+          <chakra.span color='#4caf50' fontWeight='500'>
+            positive
+          </chakra.span>
+          ,{' '}
+          <chakra.span color='#f44336' fontWeight='500'>
+            négative
+          </chakra.span>{' '}
+          et{' '}
+          <chakra.span color='#9e9e9e' fontWeight='500'>
+            neutre
+          </chakra.span>{' '}
+          des utilisateurs à partir de leurs tweets et en affichant cela dans un
+          graphe circulaire animé.
+          <br />
+          Comme par exemple ici on trouve pour le <b>{searchQuery}</b> on a{' '}
+          <chakra.b color='#4caf50'>{positivePerc}%</chakra.b> de positive,{' '}
+          <chakra.b color='#f44336'>{negativePerc}%</chakra.b> de négative et{' '}
+          <chakra.b color='#9e9e9e'>{neutralPerc}%</chakra.b> de neutre.
         </Text>
         <Flex
           justify='center'
