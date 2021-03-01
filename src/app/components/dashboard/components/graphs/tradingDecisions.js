@@ -7,7 +7,7 @@ import { useInfo } from 'hooks';
 import { useSelector } from 'react-redux';
 import { selectSearchQuery } from 'slices/global';
 
-const roundIt = (x) => Math.round(x * 100) / 100;
+const roundIt = (x) => Math.round(x * 100 * 100) / 100;
 
 let buyPerc = 0;
 let holdPerc = 0;
@@ -38,33 +38,18 @@ const TradingDecisions = () => {
       <Graph
         isOpen={isOpen}
         onClose={onClose}
-        title='Décisions d’Achats'
+        title="Décisions d'Achats"
         description={
           <Text>
-            Visualiser la prédiction des tweets en retournant les différentes
-            valeurs{' '}
-            <chakra.span fontWeight='500' color='rgb(51, 102, 204)'>
-              buy
-            </chakra.span>
-            ,{' '}
-            <chakra.span fontWeight='500' color='rgb(220, 57, 18)'>
-              hold
-            </chakra.span>{' '}
-            et{' '}
-            <chakra.span fontWeight='500' color='rgb(255, 153, 0)'>
-              sell
-            </chakra.span>{' '}
-            ainsi que leurs pourcentages en utilisant un graphe donut. <br />
-            Dans celle-ci on retrouve que{' '}
-            <chakra.span fontWeight='500' color='rgb(51, 102, 204)'>
+            <chakra.span fontWeight='700' color='rgb(51, 102, 204)'>
               {buyPerc}%
             </chakra.span>{' '}
             décide d'acheter le <b>{searchQuery}</b>,{' '}
-            <chakra.span fontWeight='500' color='rgb(220, 57, 18)'>
+            <chakra.span fontWeight='700' color='rgb(220, 57, 18)'>
               {holdPerc}%
             </chakra.span>{' '}
             décide de le conserver et{' '}
-            <chakra.span fontWeight='500' color='rgb(255, 153, 0)'>
+            <chakra.span fontWeight='700' color='rgb(255, 153, 0)'>
               {sellPerc}%
             </chakra.span>{' '}
             décide de vendre.

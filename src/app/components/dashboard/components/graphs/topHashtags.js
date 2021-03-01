@@ -24,9 +24,6 @@ const TopHashtags = () => {
           title='Top Hashtags'
           description={
             <Text>
-              Afficher les hashtags les plus utilisés dans le monde du crypto
-              Currency dans un graphe a bar horizontal et en spécifiant pour
-              chaque hashtag sa fréquence. <br />
               Le hashtag le plus utilisé est <b>{info.hashtags[0] && info.hashtags[0][0]}</b>.
             </Text>
           }

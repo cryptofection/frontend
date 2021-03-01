@@ -6,7 +6,7 @@ import { lighten } from 'utils';
 import { useSelector } from 'react-redux';
 import { selectSearchQuery } from 'slices/global';
 
-const roundIt = (x) => Math.round(x * 100) / 100;
+const roundIt = (x) => Math.round(x * 100 * 100) / 100;
 
 let positivePerc = 0;
 let negativePerc = 0;
@@ -31,25 +31,10 @@ const SentimentAnalysisInfo = ({ isOpen, onClose }) => {
       <Flex direction='column' h='100%'>
         <Heading color={pickAlpha(0.8, 0.8)}>Sentiment Analysis</Heading>
         <Text my='10px' color={pickAlpha(0.7, 0.7)}>
-          Visualisation des sentiments en pourcentage{' '}
-          <chakra.span color='#4caf50' fontWeight='500'>
-            positive
-          </chakra.span>
-          ,{' '}
-          <chakra.span color='#f44336' fontWeight='500'>
-            négative
-          </chakra.span>{' '}
-          et{' '}
-          <chakra.span color='#9e9e9e' fontWeight='500'>
-            neutre
-          </chakra.span>{' '}
-          des utilisateurs à partir de leurs tweets et en affichant cela dans un
-          graphe circulaire animé.
-          <br />
-          Comme par exemple ici on trouve pour le <b>{searchQuery}</b> on a{' '}
-          <chakra.b color='#4caf50'>{positivePerc}%</chakra.b> de positive,{' '}
-          <chakra.b color='#f44336'>{negativePerc}%</chakra.b> de négative et{' '}
-          <chakra.b color='#9e9e9e'>{neutralPerc}%</chakra.b> de neutre.
+          Pour le <b>{searchQuery}</b> on a{' '}
+          <chakra.b color='#4caf50'>{positivePerc}%</chakra.b> de sentiments positifs,{' '}
+          <chakra.b color='#f44336'>{negativePerc}%</chakra.b> négatifs et{' '}
+          <chakra.b color='#9e9e9e'>{neutralPerc}%</chakra.b> sont neutres.
         </Text>
         <Flex
           justify='center'

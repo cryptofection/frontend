@@ -12,7 +12,7 @@ const CoinSearchHistory = () => {
   return (
     <>
       <MiniGraph
-        name='Historique'
+        name='Top 10'
         image={CoinSearchHistoryImage}
         onClick={onOpen}
       />
@@ -21,13 +21,10 @@ const CoinSearchHistory = () => {
         <Graph
           isOpen={isOpen}
           onClose={onClose}
-          title='Historique'
+          title='Historique Top 10'
           description={
             <Text>
-              Afficher les 10 coins les plus recherchées dans notre application
-              et pour visualiser cela on a utilisé un graphe a bar vertical.{' '}
-              <br />
-              Parmi les 10 coins on retrouve les 3 coin avec le plus grand
+              Parmi les 10 coins on retrouve les 3 coins avec le plus grand
               nombre de recherche sont:{' '}
               <b>{info.search_history[0] && info.search_history[0][0]}</b>,{' '}
               <b>{info.search_history[1] && info.search_history[1][0]}</b> et{' '}

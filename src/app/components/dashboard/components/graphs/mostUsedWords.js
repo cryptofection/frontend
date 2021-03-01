@@ -25,10 +25,7 @@ const MostUsedWords = () => {
         title='Word Cloud'
         description={
           <Text>
-            Préciser les différents mots que les utilisateurs utilisent souvent
-            dans leurs tweets pour parler d’un coin en affichant ces mots dans
-            un graphe word cloud. <br />
-            Ce graphe présente plusieurs mots dont le plus répété est{' '}
+            Le terme le plus répété est{' '}
             <b>{words[0].text}</b> et le moins répété est{' '}
             <b>{words[words.length - 1].text}</b>.
           </Text>
