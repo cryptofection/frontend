@@ -214,7 +214,7 @@ const TopTweets = () => {
               >
                 {info.topTweets.map((tweet) => {
                   return (
-                    <GridItem key={tweet.name}>
+                    <GridItem key={tweet.id}>
                       <TweetRow
                         id={tweet.id}
                         name={tweet.name}

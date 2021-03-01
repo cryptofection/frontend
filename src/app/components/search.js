@@ -102,6 +102,7 @@ const Search = () => {
             }}
             w={['60%']}
             maxW='520px'
+            zIndex={6}
           >
             {result.slice(0, 4).map((coin) => (
               <SearchCoin

@@ -9,6 +9,10 @@ import { selectSearchQuery } from 'slices/global';
 
 const roundIt = (x) => Math.round(x * 100) / 100;
 
+let buyPerc = 0;
+let holdPerc = 0;
+let sellPerc = 0;
+
 const TradingDecisions = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { info } = useInfo();
@@ -16,14 +20,17 @@ const TradingDecisions = () => {
 
   const total =
     info?.buyDecision.buy + info?.buyDecision.hold + info?.buyDecision.sell;
-  const buyPerc = roundIt(info?.buyDecision.buy / total);
-  const holdPerc = roundIt(info?.buyDecision.hold / total);
-  const sellPerc = roundIt(info?.buyDecision.sell / total);
+
+  if (total) {
+    buyPerc = roundIt(info?.buyDecision.buy / total);
+    holdPerc = roundIt(info?.buyDecision.hold / total);
+    sellPerc = roundIt(info?.buyDecision.sell / total);
+  }
 
   return (
     <>
       <MiniGraph
-        name='Décisions d’Achats'
+        name="Décisions d'Achats"
         image={TradingDecisionsImage}
         onClick={onOpen}
       />

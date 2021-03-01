@@ -8,6 +8,10 @@ import { selectSearchQuery } from 'slices/global';
 
 const roundIt = (x) => Math.round(x * 100) / 100;
 
+let positivePerc = 0;
+let negativePerc = 0;
+let neutralPerc = 0;
+
 const SentimentAnalysisInfo = ({ isOpen, onClose }) => {
   const { info } = useInfo();
   const searchQuery = useSelector(selectSearchQuery);
@@ -16,9 +20,12 @@ const SentimentAnalysisInfo = ({ isOpen, onClose }) => {
 
   const total =
     info?.score.positive + info?.score.negative + info?.score.neutral;
-  const positivePerc = roundIt(info?.score.positive / total);
-  const negativePerc = roundIt(info?.score.negative / total);
-  const neutralPerc = roundIt(info?.score.neutral / total);
+
+  if (total) {
+    positivePerc = roundIt(info?.score.positive / total);
+    negativePerc = roundIt(info?.score.negative / total);
+    neutralPerc = roundIt(info?.score.neutral / total);
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} maxH='auto'>
