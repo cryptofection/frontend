@@ -12,7 +12,7 @@ const countWords = (text) => {
   return Object.keys(output).map((item) => ({
     text: item,
     value: output[item],
-  })).sort((a, b) => b.value - a.value).slice(0, 30);
+  })).sort((a, b) => b.value - a.value).slice(0, 40);
 };
 
 export default countWords;

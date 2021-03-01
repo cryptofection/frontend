@@ -18,17 +18,18 @@ const styles = {
       h: '100%',
     },
     '::-webkit-scrollbar': {
-      width: '28px',
-      height: '18px',
+      width: ['6px', '8px'],
+      height: ['6px', '8px'],
+      borderRadius: '100px',
+      bgColor:
+        props.colorMode === 'light'
+          ? 'rgba(0, 0, 0, 0.1)'
+          : 'rgba(255, 255, 255, 0.1)',
     },
     '::-webkit-scrollbar-thumb': {
       bgColor: props.colorMode === 'light' ? '#3f51b5' : '#F5B250',
       height: '6px',
-      border: '10px solid rgba(0, 0, 0, 0)',
-      backgroundClip: 'padding-box',
-      '-webkit-border-radius': '200px',
-      '-webkit-box-shadow':
-        'inset -3px -3px 0px rgba(0, 0, 0, 0.05), inset 3px 3px 0px rgba(0, 0, 0, 0.05)',
+      borderRadius: '100px',
     },
     '::-webkit-scrollbar-button': {
       width: 0,

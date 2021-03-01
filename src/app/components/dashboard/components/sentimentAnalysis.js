@@ -1,16 +1,17 @@
-import { Flex, Heading, useDisclosure, Skeleton } from '@chakra-ui/react';
+import { Flex, Heading, useDisclosure } from '@chakra-ui/react';
 import { useColor, useInfo } from 'hooks';
 import { Chart } from 'react-google-charts';
 import { lighten } from 'utils';
 import { AiOutlineFullscreen } from 'react-icons/ai';
 import SentimentAnalysisInfo from './sentimentAnalysisInfo';
 import { motion } from 'framer-motion';
+import { GridLoader } from 'react-spinners';
 
 const FlexMotion = motion.custom(Flex);
 
 const SentimentAnalysis = () => {
   const { info } = useInfo();
-  const { color, pick, pickAlpha } = useColor();
+  const { pick, pickAlpha } = useColor();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -75,22 +76,12 @@ const SentimentAnalysis = () => {
           <Flex
             w='100%'
             h='100%'
-            p={['20px', '30px']}
-            pt={['60px', '70px']}
-            minH='250px'
+            justify='center'
+            align='center'
+            position='absolute'
+            left='0'
           >
-            <Skeleton
-              pos='relative'
-              borderRadius='30px'
-              mx='auto'
-              userSelect='none'
-              startColor={color('skeletonStart')}
-              endColor={color('skeletonEnd')}
-              isLoaded={info}
-              fadeDuration={0}
-              w='100%'
-              h='100%'
-            />
+            <GridLoader size='20px' color={pickAlpha(0.5, 0.5)} />
           </Flex>
         )}
       </Flex>

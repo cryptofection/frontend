@@ -3,9 +3,11 @@ import CoinSearchHistoryImage from 'assets/graphs/3.jpg';
 import { Chart } from 'react-google-charts';
 import MiniGraph from './miniGraph';
 import Graph from './graph';
+import { useInfo } from 'hooks';
 
 const CoinSearchHistory = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { info } = useInfo();
 
   return (
     <>
@@ -20,23 +22,21 @@ const CoinSearchHistory = () => {
         title='Coin search history title'
         description='Coin search history description'
       >
-        <Chart
-          width='100%'
-          height={'400px'}
-          chartType='Bar'
-          loader={<div>Loading Chart</div>}
-          data={[
-            ['Coins', 'Frequency'],
-            ['BTC', 10],
-            ['MFT', 20],
-            ['DOGE', 13],
-            ['USDT', 60],
-            ['ADA', 180],
-          ]}
-          options={{
-            legend: 'none',
-          }}
-        />
+        {info && (
+          <Chart
+            width='100%'
+            height={'400px'}
+            chartType='Bar'
+            loader={<div>Loading Chart</div>}
+            data={[
+              ['Coins', 'Frequency'],
+              ...info.search_history
+            ]}
+            options={{
+              legend: 'none',
+            }}
+          />
+        )}
       </Graph>
     </>
   );

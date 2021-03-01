@@ -1,7 +1,11 @@
 import { Flex, chakra } from '@chakra-ui/react';
 import { darken } from 'utils';
+import { useInfo } from 'hooks';
+import { HashLoader } from 'react-spinners';
 
 const MiniGraph = ({ name, image, onClick }) => {
+  const { info } = useInfo();
+
   return (
     <>
       <Flex
@@ -36,7 +40,7 @@ const MiniGraph = ({ name, image, onClick }) => {
           opacity='0.5'
         />
         <chakra.span position='relative' zIndex={1}>
-          {name}
+          {info ? name : <HashLoader size='30px' color='#F5B250' />}
         </chakra.span>
       </Flex>
     </>

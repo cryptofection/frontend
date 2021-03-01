@@ -26,6 +26,7 @@
     "react-query": "^3.8.3",
     "react-redux": "^7.2.2",
     "react-scripts": "4.0.2",
+    "react-spinners": "^0.10.6",
     "react-timeago": "^5.2.0",
     "react-twitter-widgets": "^1.9.5",
     "react-use-dimensions": "^1.2.1",
