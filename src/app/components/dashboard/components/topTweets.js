@@ -25,21 +25,35 @@ const TweetModal = ({ isOpen, onClose, id }) => {
   }, [isOpen]);
 
   return (
-    <Modal w='auto' isOpen={isOpen} onClose={onClose}>
+    <Modal p='0px' w='auto' isOpen={isOpen} onClose={onClose}>
       <Heading
         fontSize={['1.8rem', '2.4rem']}
         mb={['6px', '10px']}
         color={pickAlpha(0.6, 0.8)}
+        mt='30px'
+        ml='30px'
       >
         Tweet
       </Heading>
-      {!loaded && <Box>Loading...</Box>}
-      <Box w={['100%', '550px']} justify='center' align='center' mt='50px'>
-        <Tweet
-          onLoad={() => setLoaded(true)}
-          tweetId={id}
-          options={{ width: '100%' }}
-        />
+      {!loaded && (
+        <Box mt='30px' ml='30px'>
+          Loading...
+        </Box>
+      )}
+      <Box
+        mb='30px'
+        ml='30px'
+        pr='30px'
+        maxH='350px'
+        overflow='auto'
+      >
+        <Box w={['100%', '550px']} justify='center' align='center' mt='50px'>
+          <Tweet
+            onLoad={() => setLoaded(true)}
+            tweetId={id}
+            options={{ width: '100%' }}
+          />
+        </Box>
       </Box>
     </Modal>
   );
@@ -199,12 +213,7 @@ const TopTweets = () => {
         >
           Top Tweets
         </Heading>
-        <Flex
-          pl={['20px', '30px']}
-          overflow='auto'
-          w='100%'
-          h='100%'
-        >
+        <Flex pl={['20px', '30px']} overflow='auto' w='100%' h='100%'>
           {info ? (
             info.topTweets.length !== 0 ? (
               <Grid

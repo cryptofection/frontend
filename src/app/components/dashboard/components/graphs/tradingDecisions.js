@@ -18,13 +18,14 @@ const TradingDecisions = () => {
   const { info } = useInfo();
   const searchQuery = useSelector(selectSearchQuery);
 
-  const total =
-    info?.buyDecision.buy + info?.buyDecision.hold + info?.buyDecision.sell;
+  const total = info
+    ? info.buyDecision.buy + info.buyDecision.hold + info.buyDecision.sell
+    : 0;
 
-  if (total) {
-    buyPerc = roundIt(info?.buyDecision.buy / total);
-    holdPerc = roundIt(info?.buyDecision.hold / total);
-    sellPerc = roundIt(info?.buyDecision.sell / total);
+  if (total && info) {
+    buyPerc = roundIt(info.buyDecision.buy / total);
+    holdPerc = roundIt(info.buyDecision.hold / total);
+    sellPerc = roundIt(info.buyDecision.sell / total);
   }
 
   return (

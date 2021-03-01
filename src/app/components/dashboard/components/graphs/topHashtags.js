@@ -16,20 +16,21 @@ const TopHashtags = () => {
         image={TopHashtagsImage}
         onClick={onOpen}
       />
-      <Graph
-        isOpen={isOpen}
-        onClose={onClose}
-        title='Top Hashtags'
-        description={
-          <Text>
-            Afficher les hashtags les plus utilisés dans le monde du crypto
-            Currency dans un graphe a bar horizontal et en spécifiant pour
-            chaque hashtag sa fréquence. <br />
-            Le hashtag le plus utilisé est <b>{info?.hashtags[0][0]}</b>.
-          </Text>
-        }
-      >
-        {info && (
+
+      {info && (
+        <Graph
+          isOpen={isOpen}
+          onClose={onClose}
+          title='Top Hashtags'
+          description={
+            <Text>
+              Afficher les hashtags les plus utilisés dans le monde du crypto
+              Currency dans un graphe a bar horizontal et en spécifiant pour
+              chaque hashtag sa fréquence. <br />
+              Le hashtag le plus utilisé est <b>{info.hashtags[0] && info.hashtags[0][0]}</b>.
+            </Text>
+          }
+        >
           <Chart
             width='100%'
             height={'400px'}
@@ -63,8 +64,8 @@ const TopHashtags = () => {
               legend: { position: 'none' },
             }}
           />
-        )}
-      </Graph>
+        </Graph>
+      )}
     </>
   );
 };

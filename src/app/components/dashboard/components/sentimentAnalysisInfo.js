@@ -15,16 +15,15 @@ let neutralPerc = 0;
 const SentimentAnalysisInfo = ({ isOpen, onClose }) => {
   const { info } = useInfo();
   const searchQuery = useSelector(selectSearchQuery);
-
   const { pick, pickAlpha } = useColor();
+  const total = info
+    ? info.score.positive + info.score.negative + info.score.neutral
+    : 0;
 
-  const total =
-    info?.score.positive + info?.score.negative + info?.score.neutral;
-
-  if (total) {
-    positivePerc = roundIt(info?.score.positive / total);
-    negativePerc = roundIt(info?.score.negative / total);
-    neutralPerc = roundIt(info?.score.neutral / total);
+  if (total && info) {
+    positivePerc = roundIt(info.score.positive / total);
+    negativePerc = roundIt(info.score.negative / total);
+    neutralPerc = roundIt(info.score.neutral / total);
   }
 
   return (

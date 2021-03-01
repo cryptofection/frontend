@@ -16,22 +16,25 @@ const CoinSearchHistory = () => {
         image={CoinSearchHistoryImage}
         onClick={onOpen}
       />
-      <Graph
-        isOpen={isOpen}
-        onClose={onClose}
-        title='Historique'
-        description={
-          <Text>
-            Afficher les 10 coins les plus recherchées dans notre application et
-            pour visualiser cela on a utilisé un graphe a bar vertical. <br />
-            Parmi les 10 coins on retrouve les 3 coin avec le plus grand nombre
-            de recherche sont: <b>{info?.search_history[0][0]}</b>,{' '}
-            <b>{info?.search_history[1][0]}</b> et{' '}
-            <b>{info?.search_history[2][0]}</b>.
-          </Text>
-        }
-      >
-        {info && (
+
+      {info && (
+        <Graph
+          isOpen={isOpen}
+          onClose={onClose}
+          title='Historique'
+          description={
+            <Text>
+              Afficher les 10 coins les plus recherchées dans notre application
+              et pour visualiser cela on a utilisé un graphe a bar vertical.{' '}
+              <br />
+              Parmi les 10 coins on retrouve les 3 coin avec le plus grand
+              nombre de recherche sont:{' '}
+              <b>{info.search_history[0] && info.search_history[0][0]}</b>,{' '}
+              <b>{info.search_history[1] && info.search_history[1][0]}</b> et{' '}
+              <b>{info.search_history[2] && info.search_history[2][0]}</b>.
+            </Text>
+          }
+        >
           <Chart
             width='100%'
             height={'400px'}
@@ -42,8 +45,8 @@ const CoinSearchHistory = () => {
               legend: 'none',
             }}
           />
-        )}
-      </Graph>
+        </Graph>
+      )}
     </>
   );
 };

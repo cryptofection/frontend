@@ -13,6 +13,7 @@ const CustomModal = ({
   maxW = '840px',
   maxH = '511px',
   w = '90%',
+  p = '30px',
   noCloseButton = false,
 }) => {
   const { color, pickAlpha } = useColor();
@@ -61,12 +62,12 @@ const CustomModal = ({
             <MotionBox
               pos='relative'
               bgColor={color('primary')}
-              p='30px'
+              p={p}
               w={['100%', w]}
               h={['100%', 'auto']}
               maxW={maxW}
               maxH={['auto', maxH]}
-              overflow='auto'
+              // overflow='auto'
               borderRadius={['0px', '30px']}
               initial={{
                 opacity: 0,
