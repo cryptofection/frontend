@@ -19,8 +19,8 @@ const TradingDecisions = () => {
       <Graph
         isOpen={isOpen}
         onClose={onClose}
-        title='Trading decisions title'
-        description='Trading decisions description'
+        title='Décisions d’Achats'
+        description='Visualiser la prédiction des tweets en retournant les différentes valeurs « buy, hold & sell » ainsi que leurs pourcentages en utilisant un graphe donut.'
       >
         {info && (
           <Chart

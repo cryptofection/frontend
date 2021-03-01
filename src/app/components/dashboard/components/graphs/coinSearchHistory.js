@@ -19,8 +19,8 @@ const CoinSearchHistory = () => {
       <Graph
         isOpen={isOpen}
         onClose={onClose}
-        title='Coin search history title'
-        description='Coin search history description'
+        title='Historique'
+        description='Afficher les 10 des coins les plus recherchées dans notre application et pour visualiser cela on a utilisé un graphe a bar vertical.'
       >
         {info && (
           <Chart
@@ -28,10 +28,7 @@ const CoinSearchHistory = () => {
             height={'400px'}
             chartType='Bar'
             loader={<div>Loading Chart</div>}
-            data={[
-              ['Coins', 'Frequency'],
-              ...info.search_history
-            ]}
+            data={[['Coins', 'Frequency'], ...info.search_history]}
             options={{
               legend: 'none',
             }}

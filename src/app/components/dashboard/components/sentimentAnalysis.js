@@ -23,6 +23,7 @@ const SentimentAnalysis = () => {
         justify='center'
         align='center'
         position='relative'
+        minH='200px'
       >
         <Heading
           fontSize={['1.6rem', '1.8rem']}

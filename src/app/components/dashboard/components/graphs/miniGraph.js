@@ -2,13 +2,16 @@ import { Flex, chakra } from '@chakra-ui/react';
 import { darken } from 'utils';
 import { useInfo } from 'hooks';
 import { HashLoader } from 'react-spinners';
+import { motion } from 'framer-motion';
+
+const FlexMotion = motion.custom(Flex);
 
 const MiniGraph = ({ name, image, onClick }) => {
   const { info } = useInfo();
 
   return (
     <>
-      <Flex
+      <FlexMotion
         w='100%'
         h='100%'
         justify='center'
@@ -17,9 +20,11 @@ const MiniGraph = ({ name, image, onClick }) => {
         fontWeight='bold'
         position='relative'
         color={darken('white', 0.1)}
-        onClick={onClick}
+        onClick={info ? onClick : undefined}
+        overflow='hidden'
+        whileHover='hover'
       >
-        <Flex
+        <FlexMotion
           bg={`url(${image})`}
           bgRepeat='no-repeat'
           bgPosition='center'
@@ -29,6 +34,15 @@ const MiniGraph = ({ name, image, onClick }) => {
           position='absolute'
           top='0'
           left='0'
+          variants={{
+            hover: {
+              scale: 1.1,
+            },
+          }}
+          transition={{
+            type: 'tween',
+            duration: 0.4,
+          }}
         />
         <Flex
           bgColor='black'
@@ -42,7 +56,7 @@ const MiniGraph = ({ name, image, onClick }) => {
         <chakra.span position='relative' zIndex={1}>
           {info ? name : <HashLoader size='30px' color='#F5B250' />}
         </chakra.span>
-      </Flex>
+      </FlexMotion>
     </>
   );
 };

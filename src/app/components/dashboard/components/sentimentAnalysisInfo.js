@@ -13,7 +13,11 @@ const SentimentAnalysisInfo = ({ isOpen, onClose, description, src }) => {
     <Modal isOpen={isOpen} onClose={onClose} maxH='auto'>
       <Flex direction='column' h='100%'>
         <Heading>Sentiment Analysis</Heading>
-        <Text my='10px'>Some Description Here of the sentiment analysis</Text>
+        <Text my='10px'>
+          Visualisation des sentiments en pourcentage « positive, négative &
+          neutre » des utilisateurs à partir de leurs tweets et en affichant
+          cela dans un graphe circulaire animé.
+        </Text>
         <Flex
           justify='center'
           align='center'

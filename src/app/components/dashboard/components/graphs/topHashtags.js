@@ -19,8 +19,8 @@ const TopHashtags = () => {
       <Graph
         isOpen={isOpen}
         onClose={onClose}
-        title='Top hashtags title'
-        description='Top hashtags description'
+        title='Top Hashtags'
+        description='Afficher les hashtags les plus utilisés dans le monde du crypto Currency dans un graphe a bar horizontal et en spécifiant pour chaque hashtag sa fréquence.'
       >
         {info && (
           <Chart

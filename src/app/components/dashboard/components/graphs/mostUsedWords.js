@@ -20,8 +20,8 @@ const MostUsedWords = () => {
       <Graph
         isOpen={isOpen}
         onClose={onClose}
-        title='Most used words title'
-        description='Most used words description'
+        title='Word Cloud'
+        description='Préciser les différents mots que les utilisateurs utilisent souvent dans leurs tweets pour parler d’un coin en affichant ces mots dans un graphe word cloud.'
       >
         {info && (
           <ReactWordcloud

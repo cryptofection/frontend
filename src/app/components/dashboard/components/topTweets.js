@@ -20,7 +20,6 @@ const TweetModal = ({ isOpen, onClose, id }) => {
   const { pickAlpha } = useColor();
   const [loaded, setLoaded] = useState(false);
 
-  console.log(id);
   useEffect(() => {
     setLoaded(false);
   }, [isOpen]);
@@ -210,7 +209,7 @@ const TopTweets = () => {
               >
                 {info.topTweets.map((tweet) => {
                   return (
-                    <GridItem>
+                    <GridItem key={tweet.name}>
                       <TweetRow
                         id={tweet.id}
                         name={tweet.name}
