@@ -8,8 +8,7 @@ import store from './store';
 import { QueryClientProvider } from 'react-query';
 import queryClient from 'queryClient';
 import { ReactQueryDevtools } from 'react-query/devtools';
-
-// TODO add service-workers?
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 render(
   <StrictMode>
@@ -25,3 +24,5 @@ render(
   </StrictMode>,
   document.getElementById('root'),
 );
+
+serviceWorkerRegistration.register();
