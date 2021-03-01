@@ -12,7 +12,7 @@ const useQuote = (id) => {
         refetchOnWindowFocus: false,
         refetchOnReconnect: false,
         retry: false,
-        enabled: id !== undefined,
+        enabled: !!id,
       },
     ).data,
   };

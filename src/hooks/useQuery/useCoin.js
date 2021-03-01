@@ -11,6 +11,7 @@ const useCoin = (id) => {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
         refetchOnReconnect: false,
+        enabled: !!id,
         retry: false,
       },
     ).data,

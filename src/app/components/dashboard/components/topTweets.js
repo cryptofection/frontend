@@ -206,7 +206,7 @@ const TopTweets = () => {
           h='100%'
         >
           {info ? (
-            info.topTweets.length === 0 ? (
+            info.topTweets.length !== 0 ? (
               <Grid
                 gap='20px'
                 templateColumns={width > 490 && width < 894 ? '1fr 1fr' : '1fr'}
